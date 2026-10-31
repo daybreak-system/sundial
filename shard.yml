@@ -1,0 +1,7 @@
+name: sundial
+version: 0.1.0
+authors:
+  - rudyon
+description: |
+  daybreak userland utilities
+license: Zlib
