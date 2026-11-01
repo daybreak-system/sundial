@@ -1,3 +1,4 @@
+require "./context"
 require "./applets/*"
 
 module Sundial
@@ -11,17 +12,16 @@ module Sundial
       ARGV.shift
     end
 
-    dispatch(command, ARGV)
+    ctx = Context.new
+    dispatch(command, ctx)
   end
 
-  def self.dispatch(command : String | Nil, args : Array(String))
+  def self.dispatch(command : String | Nil, ctx : Context)
     case command
     when nil
       puts "sundial v0.1.0"
-    when "cat"
-      print Applets.cat(args)
     when "echo"
-      print Applets.echo(args)
+      Applets::Echo.main(ctx)
     else
       abort("error: #{command} applet not found")
     end

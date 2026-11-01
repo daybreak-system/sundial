@@ -1,9 +1,47 @@
 require "./spec_helper"
 
-describe Sundial::Applets do
-  describe "echo" do
-    it "return a string" do
-      Sundial::Applets.echo(["test", "thingy"]).should be_a(String)
+describe Sundial::Applets::Echo do
+  describe ".main" do
+    it "writes a <newline> when given no operands" do
+      stdout_buffer = IO::Memory.new
+
+      ctx = Sundial::Context.new(
+        stdout: stdout_buffer,
+        argv: [] of String
+      )
+
+      Sundial::Applets::Echo.main(ctx)
+
+      stdout_buffer.to_s.should eq("\n")
+      ctx.exit_code.should eq(0)
+    end
+
+    it "writes a single operand follow by a <newline>" do
+      stdout_buffer = IO::Memory.new
+
+      ctx = Sundial::Context.new(
+        stdout: stdout_buffer,
+        argv: ["hello"]
+      )
+
+      Sundial::Applets::Echo.main(ctx)
+
+      stdout_buffer.to_s.should eq("hello\n")
+      ctx.exit_code.should eq(0)
+    end
+
+    it "writes multiple operands seperated with a single space follow by <newline>" do
+      stdout_buffer = IO::Memory.new
+
+      ctx = Sundial::Context.new(
+        stdout: stdout_buffer,
+        argv: ["hello", "sekai"]
+      )
+
+      Sundial::Applets::Echo.main(ctx)
+
+      stdout_buffer.to_s.should eq("hello sekai\n")
+      ctx.exit_code.should eq(0)
     end
   end
 end

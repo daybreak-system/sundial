@@ -1,7 +1,10 @@
 module Sundial
   module Applets
-    def self.echo(args : Array(String))
-      "#{args.join(" ")}\n"
+    module Echo
+      def self.main(ctx : Context)
+        ctx.stdout.puts ctx.argv.join(" ")
+        ctx.exit(0)
+      end
     end
   end
 end
