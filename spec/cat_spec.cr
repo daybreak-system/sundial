@@ -18,7 +18,7 @@ describe Sundial::Applets::Cat do
       exit_code.should eq(0)
     end
 
-    it "copies the file to STDOUT when given a single file operand" do
+    it "copies the file to STDOUT when given a single file as operand" do
       tmpfile = File.tempfile("sundial-spec")
       tmpfile.puts "hello sekai"
       tmpfile.close
@@ -35,7 +35,7 @@ describe Sundial::Applets::Cat do
       exit_code.should eq(0)
     end
 
-    it "concatenates multiple files to STDOUT when given multiple file operands" do
+    it "concatenates multiple files to STDOUT when given multiple files as operands" do
       tmpfile = File.tempfile("sundial-spec")
       tmpfile.puts "hello sekai"
       tmpfile.close
