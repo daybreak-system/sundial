@@ -2,12 +2,11 @@ require "./spec_helper"
 
 describe Sundial::Applets::Echo do
   describe ".main" do
-    it "writes a <newline> when given no operands" do
+    it "writes a <newline> to STDOUT when given no operands" do
       stdout_buffer = IO::Memory.new
 
       ctx = Sundial::Context.new(
         stdout: stdout_buffer,
-        argv: [] of String
       )
 
       exit_code = Sundial::Applets::Echo.main(ctx)
@@ -16,7 +15,7 @@ describe Sundial::Applets::Echo do
       exit_code.should eq(0)
     end
 
-    it "writes a single operand follow by a <newline>" do
+    it "writes a single operand follow by a <newline> to STDOUT" do
       stdout_buffer = IO::Memory.new
 
       ctx = Sundial::Context.new(
@@ -30,7 +29,7 @@ describe Sundial::Applets::Echo do
       exit_code.should eq(0)
     end
 
-    it "writes multiple operands seperated by single spaces followed by a <newline>" do
+    it "writes multiple operands seperated by single spaces followed by a <newline> to STDOUT" do
       stdout_buffer = IO::Memory.new
 
       ctx = Sundial::Context.new(

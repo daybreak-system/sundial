@@ -18,6 +18,8 @@ module Sundial
     when "sundial"
       ctx.stdout.puts "sundial v0.1.0"
       0
+    when "cat"
+      Applets::Cat.main(ctx)
     when "echo"
       Applets::Echo.main(ctx)
     else
