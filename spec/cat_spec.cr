@@ -55,5 +55,22 @@ describe Sundial::Applets::Cat do
       stdout_buffer.to_s.should eq "hello sekai\ni luv u\n"
       exit_code.should eq(0)
     end
+
+    it "copies the file to STDOUT when given a single file as operand and the file is not text" do
+      tmpfile = File.tempfile("sundial-spec")
+      tmpfile.write Bytes[123, 456, 789]
+      tmpfile.close
+
+      stdout_buffer = IO::Memory.new
+
+      ctx = Sundial::Context.new(
+        stdout: stdout_buffer,
+        argv: [tmpfile.path])
+
+      exit_code = Sundial::Applets::Cat.main(ctx)
+
+      stdout_buffer.to_slice.should eq Bytes[123, 456, 789]
+      exit_code.should eq(0)
+    end
   end
 end

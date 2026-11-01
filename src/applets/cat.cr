@@ -3,11 +3,13 @@ module Sundial
     module Cat
       def self.main(ctx : Context)
         if ctx.argv.size > 0
-          ctx.argv.each do |file|
-            if File.exists?(file)
-              ctx.stdout.print File.read(file)
+          ctx.argv.each do |arg|
+            if File.exists?(arg)
+              File.open(arg) do |file|
+                IO.copy(file, ctx.stdout)
+              end
             else
-              ctx.stderr.puts "can't open #{file}"
+              ctx.stderr.puts "can't open #{arg}"
               1
             end
           end
