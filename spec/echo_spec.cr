@@ -10,10 +10,10 @@ describe Sundial::Applets::Echo do
         argv: [] of String
       )
 
-      Sundial::Applets::Echo.main(ctx)
+      exit_code = Sundial::Applets::Echo.main(ctx)
 
-      stdout_buffer.to_s.should eq("\n")
-      ctx.exit_code.should eq(0)
+      stdout_buffer.to_s.should eq "\n"
+      exit_code.should eq(0)
     end
 
     it "writes a single operand follow by a <newline>" do
@@ -24,10 +24,10 @@ describe Sundial::Applets::Echo do
         argv: ["hello"]
       )
 
-      Sundial::Applets::Echo.main(ctx)
+      exit_code = Sundial::Applets::Echo.main(ctx)
 
-      stdout_buffer.to_s.should eq("hello\n")
-      ctx.exit_code.should eq(0)
+      stdout_buffer.to_s.should eq "hello\n"
+      exit_code.should eq(0)
     end
 
     it "writes multiple operands seperated with a single space follow by <newline>" do
@@ -38,10 +38,10 @@ describe Sundial::Applets::Echo do
         argv: ["hello", "sekai"]
       )
 
-      Sundial::Applets::Echo.main(ctx)
+      exit_code = Sundial::Applets::Echo.main(ctx)
 
       stdout_buffer.to_s.should eq("hello sekai\n")
-      ctx.exit_code.should eq(0)
+      exit_code.should eq(0)
     end
   end
 end
