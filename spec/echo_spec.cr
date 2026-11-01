@@ -30,7 +30,7 @@ describe Sundial::Applets::Echo do
       exit_code.should eq(0)
     end
 
-    it "writes multiple operands seperated with a single space follow by <newline>" do
+    it "writes multiple operands seperated by single spaces followed by a <newline>" do
       stdout_buffer = IO::Memory.new
 
       ctx = Sundial::Context.new(
