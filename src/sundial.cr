@@ -22,6 +22,8 @@ module Sundial
       Applets::Cat.main(ctx)
     when "echo"
       Applets::Echo.main(ctx)
+    when "wc"
+      Applets::Wc.main(ctx)
     else
       ctx.stderr.puts "#{cmd}: applet not found"
       1
