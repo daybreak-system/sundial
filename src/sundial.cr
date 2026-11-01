@@ -22,8 +22,9 @@ module Sundial
       puts "sundial v0.1.0"
     when "echo"
       Applets::Echo.main(ctx)
+      exit(ctx.exit_code)
     else
-      abort("error: #{command} applet not found")
+      abort("#{command}: applet not found")
     end
   end
 end
