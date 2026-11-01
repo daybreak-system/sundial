@@ -3,28 +3,26 @@ require "./applets/*"
 
 module Sundial
   def self.main
-    invocation = File.basename(PROGRAM_NAME)
+    cmd = File.basename(PROGRAM_NAME)
 
-    if invocation != "sundial"
-      command = invocation
-    elsif !ARGV.empty?
-      command = ARGV[0]
-      ARGV.shift
+    if cmd == "sundial" && ARGV.size > 0
+      cmd = ARGV.shift
     end
 
     ctx = Context.new
-    dispatch(command, ctx)
+    exit(dispatch(cmd, ctx))
   end
 
-  def self.dispatch(command : String | Nil, ctx : Context)
-    case command
-    when nil
+  def self.dispatch(cmd : String, ctx : Context)
+    case cmd
+    when "sundial"
       puts "sundial v0.1.0"
+      0
     when "echo"
       Applets::Echo.main(ctx)
-      exit(ctx.exit_code)
     else
-      abort("#{command}: applet not found")
+      STDERR.puts "#{cmd}: applet not found"
+      1
     end
   end
 end

@@ -3,7 +3,7 @@ module Sundial
     module Echo
       def self.main(ctx : Context)
         ctx.stdout.puts ctx.argv.join(" ")
-        ctx.exit(1)
+        0
       end
     end
   end
