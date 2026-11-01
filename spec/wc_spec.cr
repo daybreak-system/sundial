@@ -18,7 +18,7 @@ describe Sundial::Applets::Wc do
 
       exit_code = Sundial::Applets::Wc.main(ctx)
 
-      stdout_buffer.to_s.should eq "3 #{tmpfile.path}\n"
+      stdout_buffer.to_s.should eq " 3 #{tmpfile.path}\n"
       exit_code.should eq(0)
     end
 
@@ -38,7 +38,7 @@ describe Sundial::Applets::Wc do
 
       exit_code = Sundial::Applets::Wc.main(ctx)
 
-      stdout_buffer.to_s.should eq "42 #{tmpfile.path}\n"
+      stdout_buffer.to_s.should eq " 42 #{tmpfile.path}\n"
       exit_code.should eq(0)
     end
 
@@ -58,7 +58,7 @@ describe Sundial::Applets::Wc do
 
       exit_code = Sundial::Applets::Wc.main(ctx)
 
-      stdout_buffer.to_s.should eq "9 #{tmpfile.path}\n"
+      stdout_buffer.to_s.should eq " 9 #{tmpfile.path}\n"
       exit_code.should eq(0)
     end
 
@@ -78,7 +78,7 @@ describe Sundial::Applets::Wc do
 
       exit_code = Sundial::Applets::Wc.main(ctx)
 
-      stdout_buffer.to_s.should eq "3 9 42 #{tmpfile.path}\n"
+      stdout_buffer.to_s.should eq " 3 9 42 #{tmpfile.path}\n"
       exit_code.should eq(0)
     end
 
@@ -98,7 +98,7 @@ describe Sundial::Applets::Wc do
 
       exit_code = Sundial::Applets::Wc.main(ctx)
 
-      stdout_buffer.to_s.should eq "3 9 42 #{tmpfile.path}\n"
+      stdout_buffer.to_s.should eq " 3 9 42 #{tmpfile.path}\n"
       exit_code.should eq(0)
     end
 
@@ -124,7 +124,7 @@ describe Sundial::Applets::Wc do
 
       exit_code = Sundial::Applets::Wc.main(ctx)
 
-      stdout_buffer.to_s.should eq "3 9 42 #{tmpfile.path}\n3 3 60 #{tmpfile1.path}\n6 12 102 total\n"
+      stdout_buffer.to_s.should eq " 3 9 42 #{tmpfile.path}\n 3 3 60 #{tmpfile1.path}\n 6 12 102 total\n"
       exit_code.should eq(0)
     end
 
@@ -139,7 +139,7 @@ describe Sundial::Applets::Wc do
 
       exit_code = Sundial::Applets::Wc.main(ctx)
 
-      stdout_buffer.to_s.should eq "3 9 42\n"
+      stdout_buffer.to_s.should eq " 3 9 42\n"
       exit_code.should eq(0)
     end
 
@@ -155,7 +155,7 @@ describe Sundial::Applets::Wc do
 
       exit_code = Sundial::Applets::Wc.main(ctx)
 
-      stdout_buffer.to_s.should eq "3 9 42\n"
+      stdout_buffer.to_s.should eq " 3 9 42\n"
       exit_code.should eq(0)
     end
   end
