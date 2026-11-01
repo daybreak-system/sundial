@@ -9,19 +9,19 @@ module Sundial
       cmd = ARGV.shift
     end
 
-    ctx = Context.new
+    ctx = Context.new(STDIN, STDOUT, STDERR, ARGV)
     exit(dispatch(cmd, ctx))
   end
 
   def self.dispatch(cmd : String, ctx : Context)
     case cmd
     when "sundial"
-      puts "sundial v0.1.0"
+      ctx.stdout.puts "sundial v0.1.0"
       0
     when "echo"
       Applets::Echo.main(ctx)
     else
-      STDERR.puts "#{cmd}: applet not found"
+      ctx.stderr.puts "#{cmd}: applet not found"
       1
     end
   end
