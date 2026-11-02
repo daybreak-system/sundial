@@ -55,7 +55,7 @@ module Sundial
           ctx.stdout.puts " " + output.join(" ")
           0
         else
-          lines, words, bytes = count(ctx.stdin.gets_to_end + "\n")
+          lines, words, bytes = count(ctx.stdin.gets_to_end)
         
           if l
             output.push(lines.to_s)

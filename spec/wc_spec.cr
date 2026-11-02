@@ -129,7 +129,7 @@ describe Sundial::Applets::Wc do
     end
 
     it "writes to STDOUT the number of lines, words and bytes in STDIN when given no files and no flags" do
-      stdin_buffer = IO::Memory.new "hello sekai\ni luv u\nblessing to the world"
+      stdin_buffer = IO::Memory.new "hello sekai\ni luv u\nblessing to the world\n"
       stdout_buffer = IO::Memory.new
 
       ctx = Sundial::Context.new(
@@ -144,7 +144,7 @@ describe Sundial::Applets::Wc do
     end
 
     it "writes to STDOUT the number of lines, words and bytes in STDIN when given no files and '-' as an operand" do
-      stdin_buffer = IO::Memory.new "hello sekai\ni luv u\nblessing to the world"
+      stdin_buffer = IO::Memory.new "hello sekai\ni luv u\nblessing to the world\n"
       stdout_buffer = IO::Memory.new
 
       ctx = Sundial::Context.new(
