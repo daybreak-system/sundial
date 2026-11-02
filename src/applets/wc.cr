@@ -6,18 +6,12 @@ module Sundial
       def self.wc(ctx : Context, l : Bool, w : Bool, c : Bool, files : Array(String))
         output = [] of String
 
-        if files.size > 0
+        if files.size > 0 && files.join("") != "-"
           total_lines = 0
           total_words = 0
           total_bytes = 0
           files.each do |file|
-            lines = 0
-            words = 0
-            bytes = File.size(file)
-            File.each_line(file) do |line|
-              lines += 1
-              words += line.split(/\s+/).reject(&.empty?).size
-            end
+            lines, words, bytes = count(File.read(file))
 
             total_lines += lines
             total_words += words
@@ -61,9 +55,31 @@ module Sundial
           ctx.stdout.puts " " + output.join(" ")
           0
         else
-          ctx.stdout.puts "error: unimplemented for now"
-          1
+          lines, words, bytes = count(ctx.stdin.gets_to_end + "\n")
+        
+          if l
+            output.push(lines.to_s)
+          end
+
+          if w
+            output.push(words.to_s)
+          end
+
+          if c
+            output.push(bytes.to_s)
+          end
+
+          ctx.stdout.puts " " + output.join(" ")
+          0
         end
+      end
+
+      def self.count(string : String)
+        lines = string.split("\n").size - 1
+        words = string.split.size
+        bytes = string.bytesize
+
+        {lines, words, bytes}
       end
 
       def self.main(ctx : Context)
@@ -87,8 +103,8 @@ module Sundial
             bytes = true
           end
 
-          parser.unknown_args do |_files|
-            files = _files
+          parser.unknown_args do |args|
+            files = args
           end
         end
 
