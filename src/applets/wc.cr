@@ -56,7 +56,7 @@ module Sundial
           0
         else
           lines, words, bytes = count(ctx.stdin.gets_to_end)
-        
+
           if l
             output.push(lines.to_s)
           end
